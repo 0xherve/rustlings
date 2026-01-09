@@ -21,9 +21,18 @@ fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
     let cost_per_item = 5;
 
     // TODO: Handle the error case as described above.
+    
+    // The classic Match expression
     let qty = item_quantity.parse::<i32>();
 
-    Ok(qty * cost_per_item + processing_fee)
+    match qty {
+        Ok(num) => Ok(num * cost_per_item + processing_fee),
+        Err(e) => Err(e),
+    }
+    // Ironic How you match an enum and return an enum :)
+    
+    //you can also use the simple version they mentioned of:
+    // Ok(qty? * cost_per_item + processing_fee)
 }
 
 fn main() {

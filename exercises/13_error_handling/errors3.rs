@@ -15,7 +15,7 @@ fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
 
 // TODO: Fix the compiler error by changing the signature and body of the
 // `main` function.
-fn main() {
+fn main() -> Result<(), ParseIntError> {
     let mut tokens = 100;
     let pretend_user_input = "8";
 
@@ -28,4 +28,10 @@ fn main() {
         tokens -= cost;
         println!("You now have {tokens} tokens.");
     }
+    
+    Ok(())
+    
+    // I assume the reason we need to add the return signature is because the `?`
+    // might break the control flow and return an error. With a Result enum to handle 
+    // an error, we use `Ok(())` and the Error type.
 }
